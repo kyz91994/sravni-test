@@ -24,7 +24,7 @@ export const ArticleList = (): ReturnComponentType => {
     return (
       <div>
         {articles.map(article => {
-          return <Article key={article.createdAt} {...article} />;
+          return <Article key={article.title} {...article} />;
         })}
       </div>
     );

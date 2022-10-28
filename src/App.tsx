@@ -3,7 +3,6 @@ import React, { useCallback, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import style from './App.module.scss';
-// import { appActions } from './CommonActions/App';
 import { Header } from './components/Header';
 import { NewArticle } from './components/NewArticle';
 import { useActions, useAppDispatch, useAppSelector } from './hooks/hooks';
