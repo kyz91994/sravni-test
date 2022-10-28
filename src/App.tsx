@@ -70,8 +70,8 @@ export const App = (): ReturnComponentType => {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<SignIn />} />
           <Route path="register" element={<SignUp />} />
-          <Route path="/editor" element={<NewArticle />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="editor" element={<NewArticle />} />
+          <Route path="settings" element={<Settings />} />
         </Routes>
       </div>
     </div>
