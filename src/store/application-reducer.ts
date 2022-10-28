@@ -24,16 +24,10 @@ export const slice = createSlice({
     error: null,
     isInitialized: false,
   } as InitialStateType,
-  reducers: {
-    // setAppStatus(state, action: PayloadAction<{ status: RequestStatusType }>) {
-    //   state.status = action.payload.status;
-    // },
-    // setAppError(state, action: PayloadAction<{ error: string | null }>) {
-    //   state.error = action.payload.error;
-    // },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
+
       .addCase(initializeApp.fulfilled, state => {
         state.isInitialized = true;
       })

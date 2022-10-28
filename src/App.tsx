@@ -70,18 +70,8 @@ export const App = (): ReturnComponentType => {
           <Route path="/" element={<Home />} />
           <Route path="login" element={<SignIn />} />
           <Route path="register" element={<SignUp />} />
-          {/* <Route path="/editor/:slug" element={<Editor>} /> */}
           <Route path="/editor" element={<NewArticle />} />
-          {/* <Route path="/article/:id" element={<Article>} /> */}
           <Route path="/settings" element={<Settings />} />
-          {/* <Route path="/@:username/favorites" element={<ProfileFavorites>} /> */}
-          {/* <Route path="/@:username" element={<Profile>} /> */}
-
-          {/* <Route path="teams" element={<Teams />}> */}
-          {/*  <Route path=":teamId" element={<Team />} /> */}
-          {/*  <Route path="new" element={<NewTeamForm />} /> */}
-          {/*  <Route index element={<LeagueStandings />} /> */}
-          {/* </Route> */}
         </Routes>
       </div>
     </div>
