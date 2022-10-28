@@ -49,9 +49,8 @@ const createArticleTC = createAsyncThunk<
     if (res.status === SUCCESS_RESPONSE) {
       return res.data.article;
     }
-    // thunkAPI.dispatch(setAppStatus({ status: 'succeeded' }));
   } catch (error) {
-    // return handleAsyncServerNetworkError(error, thunkAPI);
+    throw new Error();
   }
 });
 
