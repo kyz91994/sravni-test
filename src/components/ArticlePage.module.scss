@@ -1,7 +1,5 @@
 .container {
-
   margin: 0 auto;
-  margin-top: 1.5rem;
   padding: 0 15px;
   @media (min-width: 544px) {
     max-width: 576px;
@@ -21,27 +19,23 @@
     flex-wrap: wrap;
     margin-left: -15px;
     margin-right: -15px;
+  }
 
-    .colLeft {
+  .col {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    @media (min-width: 768px) {
       position: relative;
       min-height: 1px;
       padding-right: 15px;
       padding-left: 15px;
-      flex: 0 0 75%;
-      max-width: 75%;
-    }
-
-    .colRight {
-      position: relative;
-      min-height: 1px;
-      padding-right: 15px;
-      padding-left: 15px;
-      flex: 0 0 25%;
-      max-width: 25%;
+      flex: 0 0 83.33333%;
+      max-width: 83.33333%;
+      margin-left: 8.33333%;
     }
   }
-}
-
-.feedToggle {
-  display: inline-block;
 }

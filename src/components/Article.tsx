@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useActions, useAppSelector } from '../hooks/hooks';
+import { articlesActions } from '../store';
 import { ReturnComponentType } from '../types';
 
 import style from './Article.module.scss';
@@ -12,6 +16,20 @@ export type ArticleType = {
   title: string;
   updatedAt: string;
 };
+export interface ArticleStateType {
+  author: { username: string; bio: null; image: string };
+  description: string;
+  favoritesCount: number;
+  tagList: string[];
+  title: string;
+  updatedAt: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  body: string;
+  // eslint-disable-next-line react/no-unused-prop-types
+  createdAt: string;
+  favorited: boolean;
+  slug: string;
+}
 
 // type ArticlePropsType = {
 //   article: ArticleType;
@@ -24,7 +42,12 @@ export const Article = ({
   tagList,
   title,
   updatedAt,
-}: ArticleType): ReturnComponentType => {
+  slug,
+  favorited,
+}: ArticleStateType): ReturnComponentType => {
+  const navigate = useNavigate();
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const status = useAppSelector(state => state.app.status);
   const date = new Date(updatedAt);
 
   // Запрашиваем день недели вместе с длинным форматом даты
@@ -32,6 +55,7 @@ export const Article = ({
 
   // type OptionsType = typeof options;
   const newDate = new Intl.DateTimeFormat('en-US', options as any).format(date);
+  const { toggleFavoriteArticleTC } = useActions(articlesActions);
 
   return (
     <div className={style.article}>
@@ -46,8 +70,22 @@ export const Article = ({
           </div>
         </div>
         <button
+          onClick={
+            isLoggedIn
+              ? () => {
+                  toggleFavoriteArticleTC({ favorited, slug });
+                }
+              : () => {
+                  navigate('/login');
+                }
+          }
           type="button"
-          className={`${style.btn} ${style.btnOutlinePrimary} ${style.btnSm}`}
+          disabled={status === 'loading'}
+          className={
+            !favorited
+              ? `${style.btn} ${style.btnOutlinePrimary} ${style.btnSm}`
+              : `${style.btn} ${style.btnOutlinePrimary} ${style.btnSm} ${style.btnActive}`
+          }
         >
           <svg
             className={style.icon}
@@ -64,22 +102,22 @@ export const Article = ({
           <span>{favoritesCount}</span>
         </button>
       </div>
-      <div className={style.body}>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-      <div className={style.footer}>
-        <span>Read more...</span>
-        <ul className={style.tagList}>
-          {tagList.map(tag => {
-            return (
-              <li className={style.tag} key={tag}>
-                {tag}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <Link to={`/articles/${slug}`}>
+        <div className={style.body}>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <span className={style.readMore}>Read more...</span>
+          <ul className={style.tagList}>
+            {tagList.map(tag => {
+              return (
+                <li className={style.tag} key={tag}>
+                  {tag}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Link>
     </div>
   );
 };

@@ -10,6 +10,13 @@ export type LoginParamsType = {
     password: string;
   };
 };
+export type UserType = {
+  image: string;
+  username: string;
+  bio: string;
+  email: string;
+  password: string;
+};
 export const currentUser = createAsyncThunk<any>('auth/current', async () => {
   try {
     const res = await authAPI.current();
@@ -86,7 +93,7 @@ export const slice = createSlice({
       bio: '',
       email: '',
       password: '',
-    },
+    } as UserType,
     redirectPath: '',
   },
   reducers: {

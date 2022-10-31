@@ -3,6 +3,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Link, Navigate } from 'react-router-dom';
 
+import { ButtonForm } from '../components/ButtonForm';
+import { InputForm } from '../components/InputForm';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { authActions } from '../store';
 import { ReturnComponentType } from '../types';
@@ -52,7 +54,7 @@ export const SignIn = (): ReturnComponentType => {
   }
 
   return (
-    <div className={style.authPage}>
+    <div className={style.loginPage}>
       <div className={style.container}>
         <div className={style.row}>
           <div className={style.col}>
@@ -63,14 +65,13 @@ export const SignIn = (): ReturnComponentType => {
               </Link>
             </p>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
-              <input {...formik.getFieldProps('user.email')} />
-              <input type="password" {...formik.getFieldProps('user.password')} />
-              <button
-                className="btn btn-lg btn-primary pull-xs-right ng-binding"
-                type="submit"
-              >
-                Sign in
-              </button>
+              <InputForm {...formik.getFieldProps('user.email')} placeholder="Email" />
+              <InputForm
+                type="password"
+                {...formik.getFieldProps('user.password')}
+                placeholder="Password"
+              />
+              <ButtonForm type="submit">Sign in</ButtonForm>
             </form>
           </div>
         </div>

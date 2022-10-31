@@ -1,29 +1,31 @@
 import React from 'react';
 
 import { useFormik } from 'formik';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import { ButtonForm } from '../components/ButtonForm';
+import { InputForm } from '../components/InputForm';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { authActions } from '../store';
+import { setIsLoggedIn, UserType } from '../store/auth-reducer';
 import { ReturnComponentType } from '../types';
 
 import style from './Settings.module.scss';
 
 type FormValuesType = {
-  user: {
-    image?: string;
-    username?: string;
-    bio?: string;
-    email: string;
-    password: string;
-  };
+  user: UserType;
 };
 export const Settings = (): ReturnComponentType => {
   const { user } = useAppSelector(state => state.auth);
-
-  const { redirectPath } = useAppSelector(state => state.auth);
+  const navigate = useNavigate();
   const initialValues: FormValuesType = {
-    user,
+    user: {
+      image: user.image,
+      username: user.username,
+      bio: user.bio || '',
+      email: user.email,
+      password: user.password,
+    },
   };
 
   const dispatch = useAppDispatch();
@@ -55,10 +57,6 @@ export const Settings = (): ReturnComponentType => {
     },
   });
 
-  if (redirectPath === '/') {
-    return <Navigate to="/" />;
-  }
-
   return (
     <div className={style.settingsPage}>
       <div className={style.container}>
@@ -66,43 +64,52 @@ export const Settings = (): ReturnComponentType => {
           <div className={style.col}>
             <h1>Your settings</h1>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
-              <input
+              <InputForm
                 type="text"
                 placeholder="URL of profile picture"
-                autoComplete="off"
                 {...formik.getFieldProps('user.image')}
               />
-              <input
+              <InputForm
                 type="text"
                 placeholder="Username"
-                autoComplete="off"
                 {...formik.getFieldProps('user.username')}
               />
               <textarea
                 placeholder="Short bio about you"
-                autoComplete="off"
                 rows={8}
                 {...formik.getFieldProps('user.bio')}
               />
-              <input
+              <InputForm
                 type="email"
                 placeholder="Email"
-                autoComplete="off"
                 {...formik.getFieldProps('user.email')}
               />
-              <input
+              <InputForm
                 type="password"
                 placeholder="New password"
-                autoComplete="off"
                 {...formik.getFieldProps('user.password')}
               />
-              <button
-                className="btn btn-lg btn-primary pull-xs-right ng-binding"
-                type="submit"
-              >
-                Update Settings
-              </button>
+              <ButtonForm type="submit">Update Settings</ButtonForm>
             </form>
+            <hr
+              style={{
+                marginTop: '1rem',
+                marginBottom: '1rem',
+                border: '0',
+                borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+              }}
+            />
+            <ButtonForm
+              onClick={() => {
+                localStorage.removeItem('jwtToken');
+                dispatch(setIsLoggedIn({ value: false }));
+                navigate('/');
+              }}
+              logOutType
+              type="button"
+            >
+              Or click here to logout.
+            </ButtonForm>
           </div>
         </div>
       </div>

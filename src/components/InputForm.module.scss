@@ -1,0 +1,30 @@
+.inputForm {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  display: block;
+  width: 100%;
+  line-height: 1.25;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+
+  &:focus {
+    border-color: #66afe9;
+    outline: none;
+  }
+
+  &:-webkit-autofill {
+    &:hover,&:focus{
+      -webkit-box-shadow: 0 0 0 1000px #fff inset;
+      font-size: 1.25rem;
+    }
+
+
+  }
+
+}
+

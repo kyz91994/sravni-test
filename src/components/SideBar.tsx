@@ -5,36 +5,35 @@ import { tagsActions } from '../store';
 import { ReturnComponentType } from '../types';
 
 import style from './SideBar.module.scss';
+import { TagButton } from './TagButton';
 
 export const SideBar = (): ReturnComponentType => {
   const { tags } = useAppSelector(state => state.tags);
   const { status } = useAppSelector(state => state.app);
   const { fetchTagsTC } = useActions(tagsActions);
-  const tagsForRender = tags.map((tag, index) => {
-    // eslint-disable-next-line react/no-array-index-key
-    return <span key={index}>{tag}</span>;
+  const tagsForRender = tags.map(tag => {
+    return (
+      <TagButton onClick={() => {}} key={tag}>
+        {tag}
+      </TagButton>
+    );
   });
+  const isLoading = status === 'loading';
 
   useEffect(() => {
     fetchTagsTC();
   }, [fetchTagsTC]);
-
-  if (status === 'loading') {
-    return (
-      <div className={style.sidebar}>
-        <p>Popular Tags</p>
-        <div className="ng-hide">Loading tags...</div>
-      </div>
-    );
+  if (!tags) {
+    return <div className={style.sidebar}>No tags... yet</div>;
   }
-  if (tags) {
-    return (
-      <div className={style.sidebar}>
-        <p>Popular Tags</p>
-        <div className={style.tagList}>{tagsForRender}</div>
-      </div>
-    );
+  if (isLoading) {
+    return <div className={style.sidebar}>Loading tags...</div>;
   }
 
-  return <div className="post-preview ng-hide">No tags are here... yet.</div>;
+  return (
+    <div className={style.sidebar}>
+      <p>Popular Tags</p>
+      <div className={style.tagList}>{tagsForRender}</div>
+    </div>
+  );
 };

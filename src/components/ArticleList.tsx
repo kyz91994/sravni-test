@@ -1,34 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useActions, useAppSelector } from '../hooks/hooks';
-import { articlesActions } from '../store';
-import { ReturnComponentType } from '../types';
+import { useAppSelector } from '../hooks/hooks';
 
-import { Article } from './Article';
+import { Article, ArticleStateType } from './Article';
 
-export const ArticleList = (): ReturnComponentType => {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  const articles = useAppSelector(state => state.articles.articles);
-  // const dispatch = useAppDispatch();
-  const { fetchArticlesTC } = useActions(articlesActions);
-  const { fetchAuthArticlesTC } = useActions(articlesActions);
+type ArticleListPropsType = {
+  articles: ArticleStateType[];
+};
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetchAuthArticlesTC();
-    } else {
-      fetchArticlesTC();
-    }
-  }, [fetchArticlesTC, fetchAuthArticlesTC, isLoggedIn]);
-  if (articles.length) {
-    return (
-      <div>
-        {articles.map(article => {
-          return <Article key={article.title} {...article} />;
-        })}
-      </div>
-    );
+export const ArticleList = ({ articles }: ArticleListPropsType): any => {
+  const { status } = useAppSelector(state => state.app);
+
+  if (articles.length === 0) {
+    return <div>No articles... yet</div>;
+  }
+  if (status === 'loading') {
+    return <div>Loading articles...</div>;
   }
 
-  return <div>No articles</div>;
+  return (
+    <div>
+      {articles.map(article => {
+        return <Article key={article.title} {...article} />;
+      })}
+    </div>
+  );
 };

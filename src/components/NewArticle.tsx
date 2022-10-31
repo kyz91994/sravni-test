@@ -1,12 +1,14 @@
 import React from 'react';
 
 import { useFormik } from 'formik';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { useAppDispatch } from '../hooks/hooks';
 import { articlesActions } from '../store';
 import { ReturnComponentType } from '../types';
 
+import { ButtonForm } from './ButtonForm';
+import { InputForm } from './InputForm';
 import style from './NewArcticle.module.scss';
 
 export type ArticleTypeModel = {
@@ -21,7 +23,7 @@ export type ArticleTypeModel = {
 //   article: ArticleTypeModel;
 // };
 export const NewArticle = (): ReturnComponentType => {
-  const { redirectUrl } = useAppSelector(state => state.articles);
+  // const { redirectUrl } = useAppSelector(state => state.articles);
   const initialValues: ArticleTypeModel = {
     article: {
       body: '',
@@ -60,9 +62,9 @@ export const NewArticle = (): ReturnComponentType => {
     },
   });
 
-  if (redirectUrl) {
-    return <Navigate to={`/${redirectUrl}`} />;
-  }
+  // if (redirectUrl) {
+  //   return <Navigate to={`/${redirectUrl}`} />;
+  // }
 
   return (
     <div className={style.settingsPage}>
@@ -71,16 +73,14 @@ export const NewArticle = (): ReturnComponentType => {
           <div className={style.col}>
             <h1>Your settings</h1>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
-              <input
+              <InputForm
                 type="text"
                 placeholder="Title"
-                autoComplete="off"
                 {...formik.getFieldProps('article.title')}
               />
-              <input
+              <InputForm
                 type="text"
                 placeholder="Body"
-                autoComplete="off"
                 {...formik.getFieldProps('article.body')}
               />
               <textarea
@@ -89,18 +89,13 @@ export const NewArticle = (): ReturnComponentType => {
                 rows={8}
                 {...formik.getFieldProps('article.description')}
               />
-              <input
+              <InputForm
                 type="text"
                 placeholder="Tags"
-                autoComplete="off"
                 {...formik.getFieldProps('article.tagList')}
               />
-              <button
-                className="btn btn-lg btn-primary pull-xs-right ng-binding"
-                type="submit"
-              >
-                Create article
-              </button>
+
+              <ButtonForm type="submit">Create article</ButtonForm>
             </form>
           </div>
         </div>

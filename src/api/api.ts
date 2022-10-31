@@ -52,8 +52,33 @@ export const articlesApi = {
 
     return promise;
   },
+  getFavoritedArticles() {
+    const promise = instance.get<any>('articles?favorited=Evgeniii&limit=5&offset=0');
+
+    return promise;
+  },
+  getArticlesByAuthor() {
+    const promise = instance.get<any>('articles?author=Evgeniii&limit=5&offset=0');
+
+    return promise;
+  },
+  getCurrentArticle(slug: string) {
+    const promise = instance.get<any>(`articles/${slug}`);
+
+    return promise;
+  },
   createArticle(data: ArticleTypeModel) {
     const promise = instance.post<any>('articles', data);
+
+    return promise;
+  },
+  likeArticle(slug: string) {
+    const promise = instance.post<any>(`articles/${slug}/favorite`);
+
+    return promise;
+  },
+  deleteLikeArticle(slug: string) {
+    const promise = instance.delete<any>(`articles/${slug}/favorite`);
 
     return promise;
   },

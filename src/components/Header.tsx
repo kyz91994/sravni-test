@@ -20,7 +20,7 @@ export const Header = (): ReturnComponentType => {
             <>
               <Link to="/editor">New Article</Link>
               <Link to="/settings">Settings</Link>
-              <Link to="/user">User</Link>
+              <Link to="/profile">User</Link>
             </>
           ) : (
             <>

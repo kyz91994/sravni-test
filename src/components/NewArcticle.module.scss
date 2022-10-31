@@ -74,7 +74,7 @@ form {
   align-items: center;
 }
 
-input, textarea {
+.input, textarea {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -128,7 +128,7 @@ input, textarea {
 //  }
 //}
 
-button {
+.btn {
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;

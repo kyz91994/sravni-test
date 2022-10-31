@@ -1,17 +1,23 @@
 
 
 .nav {
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
+
 }
 
 .navLink {
   display: block;
   padding: 0.5em 1em;
-  background: #fff;
-
   float: left;
+  margin-bottom: 0;
+  list-style: none;
+  border-radius: 0px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #aaa;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .active {
   border-bottom: 2px solid #5CB85C;

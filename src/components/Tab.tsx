@@ -4,12 +4,24 @@ import { ReturnComponentType } from '../types';
 
 import style from './Tab.module.scss';
 
-export const Tab = ({ title }: any): ReturnComponentType => {
+export const Tab = ({
+  title,
+  onClickAction,
+  active,
+  setActive,
+}: any): ReturnComponentType => {
+  const tabHandler = (): void => {
+    onClickAction();
+    setActive(title);
+  };
+
   return (
-    <li className={style.navItem}>
-      <a href="/" className={`${style.navLink} ${style.active}`}>
-        {title}
-      </a>
-    </li>
+    <button
+      type="button"
+      className={`${style.navLink} ${active === title ? style.active : ''}`}
+      onClick={tabHandler}
+    >
+      {title}
+    </button>
   );
 };

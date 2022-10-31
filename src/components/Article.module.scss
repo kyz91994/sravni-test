@@ -1,16 +1,19 @@
-.article{
+.article {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0;
 }
-.header{
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 0 1rem 0;
 }
-.info{
+
+.info {
 
 }
+
 
 .btn {
   display: inline-block;
@@ -28,32 +31,52 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
+
   &:hover {
     color: #fff;
     background-image: none;
     background-color: #5CB85C;
     border: 1px solid #5CB85C;
-    path{
-     fill: #fff;
-  }
-}
 
-.icon {
-  font-size: inherit;
-  height: 1rem;
-  width: 1rem;
+    path {
+      fill: #fff;
+    }
   }
 
 
+
+  .icon {
+    font-size: inherit;
+    height: 1rem;
+    width: 1rem;
+  }
+
+
 }
-.infoBlock{
+.btnActive {
+  color: #fff;
+  background-image: none;
+  background-color: #5CB85C;
+  border: 1px solid #5CB85C;
+
+  path {
+    fill: #fff;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #419641;
+  }
+}
+
+.infoBlock {
   display: flex;
   line-height: 1rem;
   align-items: center;
   gap: 0.3rem;
 }
 
-.avatar{
+.avatar {
   img {
     display: inline-block;
     vertical-align: middle;
@@ -70,33 +93,40 @@
     margin-bottom: 3px;
     line-height: 1.1;
   }
+
   p {
     margin-bottom: 15px;
   }
 }
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  span {
-    max-width: 30%;
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: #bbb;
-    vertical-align: middle;
-  }
-  .tagList {
-    display: flex;
-    gap: 0.3rem;
-  }
-  .tag {
-    font-weight: 300;
-    font-size: 0.8rem ;
-    padding: 0 0.6rem ;
-    border-radius: 10rem;
 
-    border: 1px solid #ddd;
-    color: #aaa;
-    background: none;
-  }
+
+}
+.readMore {
+  max-width: 30%;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #bbb;
+  vertical-align: middle;
+}
+
+.tagList {
+  float: right;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tag {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 0 0.6rem;
+  border-radius: 10rem;
+
+  border: 1px solid #ddd;
+  color: #aaa;
+  background: none;
 }

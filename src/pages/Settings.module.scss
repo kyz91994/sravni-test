@@ -72,7 +72,7 @@ form {
   align-items: center;
 }
 
-input, textarea {
+textarea {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -97,57 +97,5 @@ input, textarea {
   }
 }
 
-//textarea {
-//  height: 256px;
-//  padding: 0.75rem 1.5rem;
-//  font-size: 1.25rem;
-//  border-radius: 0.3rem;
-//  display: block;
-//  width: 100%;
-//
-//  line-height: 1.25;
-//  color: #55595c;
-//  background-color: #fff;
-//  background-image: none;
-//  background-clip: padding-box;
-//  border: 1px solid rgba(0, 0, 0, .15);
-//  resize: vertical;
-//  margin-bottom: 1rem;
-//
-//  &:focus {
-//    border-color: #66afe9;
-//    outline: none;
-//  }
-//
-//  &:-webkit-autofill {
-//    -webkit-box-shadow: 0 0 0 1000px #fff inset;
-//    font-size: 1.25rem;
-//  }
-//}
 
-button {
-  display: inline-block;
-  font-weight: normal;
-  line-height: 1.25;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  user-select: none;
-  border: 1px solid #5CB85C;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  border-radius: 0.3rem;
-  color: #fff;
-  background-color: #5CB85C;
-  align-self: flex-end;
-
-  &:hover {
-    color: #fff;
-    background-color: #449d44;
-    border-color: #419641;
-  }
-
-  //border-color: #5CB85C;
-}
 

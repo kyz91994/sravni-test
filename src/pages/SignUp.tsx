@@ -3,6 +3,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Link, Navigate } from 'react-router-dom';
 
+import { ButtonForm } from '../components/ButtonForm';
+import { InputForm } from '../components/InputForm';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { authActions } from '../store';
 
@@ -70,30 +72,22 @@ export const SignUp = (): any => {
             </p>
             <div />
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
-              <input
+              <InputForm
                 type="text"
                 placeholder="Username"
-                autoComplete="off"
                 {...formik.getFieldProps('user.username')}
               />
-              <input
+              <InputForm
                 type="email"
                 placeholder="Email"
-                autoComplete="off"
                 {...formik.getFieldProps('user.email')}
               />
-              <input
+              <InputForm
                 type="password"
                 placeholder="Password"
-                autoComplete="off"
                 {...formik.getFieldProps('user.password')}
               />
-              <button
-                className="btn btn-lg btn-primary pull-xs-right ng-binding"
-                type="submit"
-              >
-                Sign up
-              </button>
+              <ButtonForm type="submit">Sign up</ButtonForm>
             </form>
           </div>
         </div>
