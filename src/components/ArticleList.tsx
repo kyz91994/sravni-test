@@ -11,11 +11,11 @@ type ArticleListPropsType = {
 export const ArticleList = ({ articles }: ArticleListPropsType): any => {
   const { status } = useAppSelector(state => state.app);
 
-  if (articles.length === 0) {
-    return <div>No articles... yet</div>;
-  }
   if (status === 'loading') {
     return <div>Loading articles...</div>;
+  }
+  if (articles.length === 0) {
+    return <div>No articles... yet</div>;
   }
 
   return (
